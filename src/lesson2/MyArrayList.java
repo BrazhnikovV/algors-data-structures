@@ -4,7 +4,7 @@ package lesson2;
  * MyArrayList -
  *
  * @version 1.0.1
- * @package lesson1
+ * @package lesson2
  * @author  Vasya Brazhnikov
  * @copyright Copyright (c) 2018, Vasya Brazhnikov
  */
@@ -32,7 +32,7 @@ public class MyArrayList<Item extends Comparable<Item>> {
 
     /**
      * insert - вставить значение в массив
-     * @param item - значение которое необходимо добавить
+     * @param item - значение которое необходимо вставить
      */
     public void insert( Item item ) {
 
