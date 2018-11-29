@@ -15,26 +15,32 @@ public class MyArray {
      * @access private
      * int[] arr - исходный массив
      */
-    private int[] arr = new int[1000000];
+    private int[] arr = new int[100000];
 
     /**
      * @access private
      * int size - размер массива
      */
-    private int size = 999999;
+    private int size = 100000;
 
     /**
-     * run - здесь выполняются основные операции
+     * size -
      */
-    public void run() {
-        // заполняем массив случайными числами
+    public int size() {
+        return this.size;
+    }
+
+    /**
+     * fillArray - заполнить массив
+     */
+    public void fillArray() {
         for ( int i = 0; i < this.arr.length; i++ ) {
-            this.arr[i] = Rnd.nextInt( 99999 );
+            this.arr[i] = Rnd.nextInt( 99 );
         }
     }
 
     /**
-     * get -
+     * get - получить массив
      */
     public int[] get() {
         return this.arr;
@@ -44,7 +50,7 @@ public class MyArray {
      * insert - вставить значение в массив
      * @param item - значение которое необходимо вставить
      */
-    private void insert( int item ) {
+    public void insert( int item ) {
 
         if ( this.size == this.arr.length ) {
             resize(2 * this.arr.length );
@@ -58,7 +64,7 @@ public class MyArray {
      * @param item - удаляемое значение
      * @return boolean
      */
-    private boolean delete( int item ) {
+    public boolean delete( int item ) {
 
         int i = 0;
         while ( i < this.size && this.arr[i] != item ) {
@@ -88,7 +94,7 @@ public class MyArray {
      * @param item - значения по которому производится посик
      * @return boolean
      */
-    private boolean find( int item ) {
+    public boolean find( int item ) {
 
         for ( int i = 0; i < this.size; i++ ) {
 
@@ -97,6 +103,73 @@ public class MyArray {
             }
         }
         return false;
+    }
+
+    /**
+     * sortBubble - сортировка массива методом пузырька
+     */
+    public void sortBubble() {
+
+        int out, in;
+        for ( out = this.size - 1; out >= 1; out-- ) {
+
+            for( in=0; in < out; in++ ) {
+
+                if ( this.arr[in] > this.arr[in+1] ) {
+                    change( in, in + 1 );
+                }
+            }
+        }
+    }
+
+    /**
+     * sortBubble - сортировка массива методом выбора
+     */
+    public void sortSelect() {
+
+        int out, in, mark;
+        for( out=0; out < this.size; out++ ) {
+
+            mark = out;
+            for( in = out + 1; in < this.size; in++ ) {
+
+                if ( this.arr[in] < this.arr[mark] ) {
+                    mark = in;
+                }
+            }
+            change(out, mark);
+        }
+    }
+
+    /**
+     * sortInsert - сортировка массива методом вставки
+     */
+    public void sortInsert () {
+
+        int in, out;
+        for( out = 1; out < this.size; out++ ) {
+
+            int temp = this.arr[out];
+            in = out;
+            while( in > 0 && this.arr[in-1] >= temp ){
+                this.arr[in] = this.arr[in-1];
+                --in;
+            }
+
+            this.arr[in] = temp;
+        }
+    }
+
+    /**
+     * change - поменять значения местами в массиве
+     * @param a - первое значение
+     * @param b - второе значение
+     */
+    private void change( int a, int b ) {
+
+        int tmp = this.arr[a];
+        this.arr[a] = this.arr[b];
+        this.arr[b] = tmp;
     }
 
     /**

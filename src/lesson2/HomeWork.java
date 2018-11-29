@@ -15,15 +15,31 @@ public class HomeWork {
      * @param args
      */
     public static void main(String[] args) {
+        // инициализируем класс с массивом
         MyArray myArray = new MyArray();
 
-        myArray.run();
+        // заполняем массив случайными числами
+        myArray.fillArray();
 
-        int arr[] = myArray.get();
+        long start = System.currentTimeMillis();
+        myArray.sortBubble();
+        long finish = System.currentTimeMillis();
+        System.out.println( finish - start );
 
-        System.out.println(arr[999999]);
-        System.out.println(arr[21313]);
-        System.out.println(arr[453534]);
-        System.out.println(arr[68678]);
+        // заполняем массив случайными числами
+        myArray.fillArray();
+
+        start = System.currentTimeMillis();
+        myArray.sortSelect();
+        finish = System.currentTimeMillis();
+        System.out.println( finish - start );
+
+        // заполняем массив случайными числами
+        myArray.fillArray();
+
+        start = System.currentTimeMillis();
+        myArray.sortInsert();
+        finish = System.currentTimeMillis();
+        System.out.println( finish - start );
     }
 }
