@@ -1,7 +1,14 @@
+package lesson1;
+
 import java.util.Objects;
 
 /**
- * Person
+ * Person -
+ *
+ * @version 1.0.1
+ * @package lesson1
+ * @author  Vasya Brazhnikov
+ * @copyright Copyright (c) 2018, Vasya Brazhnikov
  */
 public class Person {
 
