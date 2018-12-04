@@ -22,24 +22,30 @@ public class HomeWork {
         myArray.fillArray();
 
         long start = System.currentTimeMillis();
+        // выполняем сортировку методом пузырька
         myArray.sortBubble();
         long finish = System.currentTimeMillis();
+        
         System.out.println( finish - start );
 
         // заполняем массив случайными числами
         myArray.fillArray();
 
         start = System.currentTimeMillis();
+        // выполняем сортировку методом выборки
         myArray.sortSelect();
         finish = System.currentTimeMillis();
+
         System.out.println( finish - start );
 
         // заполняем массив случайными числами
         myArray.fillArray();
 
         start = System.currentTimeMillis();
+        // выполняем сортировку методом вставки
         myArray.sortInsert();
         finish = System.currentTimeMillis();
+
         System.out.println( finish - start );
     }
 }
