@@ -8,6 +8,19 @@ public class Program {
 
         PrefixExpression preExpr = new PrefixExpression( "* 2 + 2 3" );
 
+        MyArrayDeque myArrayDeque = new MyArrayDeque( 4 );
+
+        myArrayDeque.pushBack(12);
+        myArrayDeque.pushFront(34);
+        myArrayDeque.pushBack(45);
+        myArrayDeque.pushFront(67);
+        myArrayDeque.pushBack(23);
+        myArrayDeque.pushFront(78);
+        myArrayDeque.pushBack(123);
+
+        System.out.println(myArrayDeque.popBack());
+        System.out.println(myArrayDeque.popFront());
+
         System.out.println(postExpr.calcExpression());
 
         System.out.println(preExpr.calcExpression());

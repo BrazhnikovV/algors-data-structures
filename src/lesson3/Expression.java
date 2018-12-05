@@ -3,6 +3,14 @@ package lesson3;
 import java.util.EmptyStackException;
 import java.util.concurrent.Executors;
 
+/**
+ * Expression - класс
+ *
+ * @version 1.0.1
+ * @package lesson3
+ * @author  Vasya Brazhnikov
+ * @copyright Copyright (c) 2018, Vasya Brazhnikov
+ */
 public class Expression {
 
     /**
