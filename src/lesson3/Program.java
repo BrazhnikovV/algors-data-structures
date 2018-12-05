@@ -4,34 +4,38 @@ public class Program {
 
     public static void main(String[] args) {
 
-        PostfixExpression expr = new PostfixExpression( "3 2 + 2 *" );
+        PostfixExpression postExpr = new PostfixExpression( "3 2 + 2 *" );
 
-        System.out.println(expr.calcExpression());
+        PrefixExpression preExpr = new PrefixExpression( "* 2 + 2 3" );
 
-        MyArrayQueue<Integer> q = new MyArrayQueue<>();
+        System.out.println(postExpr.calcExpression());
 
-        q.enqueue( 5 );
-        q.enqueue( 8 );
-        q.enqueue( 5 );
-        q.enqueue( 7 );
-        q.enqueue( 9 );
-
-        System.out.println(q);
-        System.out.println(q.peekFront());
-        q.dequeue();
-        q.dequeue();
-        System.out.println(q);
-        System.out.println(q.peekFront());
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-
-        System.out.println(q.isEmpty());
+        System.out.println(preExpr.calcExpression());
     }
 }
 
 
 /**
+
+ MyArrayQueue<Integer> q = new MyArrayQueue<>();
+
+ q.enqueue( 5 );
+ q.enqueue( 8 );
+ q.enqueue( 5 );
+ q.enqueue( 7 );
+ q.enqueue( 9 );
+
+ System.out.println(q);
+ System.out.println(q.peekFront());
+ q.dequeue();
+ q.dequeue();
+ System.out.println(q);
+ System.out.println(q.peekFront());
+ q.dequeue();
+ q.dequeue();
+ q.dequeue();
+
+ System.out.println(q.isEmpty());
 
  MyArrayStack<Integer> st = new MyArrayStack<>();
 
