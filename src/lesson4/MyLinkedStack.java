@@ -17,7 +17,7 @@ class MyLinkedStack<Item> {
     }
 
     public int size () {
-        return this.stack.siize();
+        return this.stack.size();
     }
 
     public boolean isEmpty () {
