@@ -3,7 +3,7 @@ package lesson6;
 import java.util.NoSuchElementException;
 
 /**
- * MyArrayList -
+ * BST - абстрактный тип данных бинартное дерево поиска
  *
  * @version 1.0.1
  * @package lesson5
@@ -44,15 +44,22 @@ public class BST<Key extends Comparable<Key>, Value> {
         private int size;
 
         /**
+         * @access private
+         * int height -
+         */
+        private int height;
+
+        /**
          * Node - конструктор
          * @param key   - ключ
          * @param value - значение
          * @param size  - размер
          */
-        public Node ( Key key, Value value, int size ) {
-            this.key   = key;
-            this.value = value;
-            this.size  = size;
+        public Node ( Key key, Value value, int size, int height ) {
+            this.key    = key;
+            this.value  = value;
+            this.size   = size;
+            this.height = height;
         }
     }
 
@@ -71,6 +78,14 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
+     * isBalanced - проверить сбалансированность дерева
+     * @return int
+     */
+    public boolean isBalanced () {
+        return this.isBalanced( this.root );
+    }
+
+    /**
      * size - получить размер дерева
      * @return int
      */
@@ -79,17 +94,11 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * size - получить размер дерева
-     * @param node - узел дерева
+     * height - получить высоту дерева
      * @return int
      */
-    public int size ( Node node ) {
-        if ( node == null ) {
-            return 0;
-        }
-        else {
-            return node.size;
-        }
+    public int height () {
+        return this.height( this.root );
     }
 
     /**
@@ -136,6 +145,53 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
 
         this.root = this.put( this.root, key, value );
+    }
+
+    /**
+     * isBalanced - проверить сбалансированность дерева
+     * @return int
+     */
+    private boolean isBalanced ( Node node ) {
+        if ( node == null ) {
+            return true;
+        }
+        else {
+            int raznica = node.right.height - node.left.height;
+            if ( raznica > 1 ) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * size - получить размер дерева
+     * @param node - узел дерева
+     * @return int
+     */
+    private int size ( Node node ) {
+        if ( node == null ) {
+            return 0;
+        }
+        else {
+            return node.size;
+        }
+    }
+
+    /**
+     * height - получить высоту дерева
+     * @param node - узел дерева
+     * @return int
+     */
+    private int height ( Node node ) {
+        if ( node == null ) {
+            return 0;
+        }
+        else {
+            return node.height;
+        }
     }
 
     /**
@@ -191,7 +247,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      */
     private Node put ( Node node, Key key, Value value ) {
         if ( node == null ) {
-            return new Node( key, value, 1 );
+            return new Node( key, value, 1, 0 );
         }
 
         int cmp = key.compareTo( node.key );
@@ -207,6 +263,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
 
         node.size = this.size( node.left ) + this.size( node.right ) + 1;
+        node.height = this.height( node.left ) + this.height( node.right ) + 1;
 
         return node;
     }
@@ -303,6 +360,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
 
         node.size = this.size( node.left ) + this.size( node.right ) + 1;
+        node.height = this.height( node.left ) + this.height( node.right ) + 1;
         return node;
     }
 }
