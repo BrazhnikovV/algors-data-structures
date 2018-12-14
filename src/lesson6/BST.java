@@ -1,5 +1,7 @@
 package lesson6;
 
+import java.util.NoSuchElementException;
+
 /**
  * MyArrayList -
  *
@@ -100,6 +102,43 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
+     * deleteMax - удалить максимальный узел
+     * @return Node
+     */
+    public void deleteMax () {
+        if ( this.isEmpty() ) {
+            throw new NoSuchElementException();
+        }
+
+        this.root = this.deleteMax( this.root );
+    }
+
+    /**
+     * deleteMin - удалить минимальный узел
+     * @return Node
+     */
+    public void deleteMin () {
+        if ( this.isEmpty() ) {
+            throw new NoSuchElementException();
+        }
+
+        this.root = this.deleteMin( this.root );
+    }
+
+    /**
+     * put - вставить значение
+     * @param key   - ключ вставляемого значения
+     * @param value - вставляемое значение
+     */
+    public void put ( Key key, Value value ) {
+        if ( key == null ) {
+            throw new IllegalArgumentException( "Not null" );
+        }
+
+        this.root = this.put( this.root, key, value );
+    }
+
+    /**
      * get - получить значение по ключу
      * @param key
      * @return Value
@@ -136,6 +175,14 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
+     * delete - удалить элемент
+     * @param key - ключ
+     */
+    public void delete ( Key key ) {
+        this.root = this.delete( this.root, key );
+    }
+
+    /**
      * put - вставить значение
      * @param node  - узел
      * @param key   - ключ вставляемого значения
@@ -165,15 +212,97 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * put - вставить значение
-     * @param key   - ключ вставляемого значения
-     * @param value - вставляемое значение
+     * min - найти минимальный узел
+     * @param node - узел
+     * @return Node
      */
-    public void put ( Key key, Value value ) {
-        if ( key == null ) {
-            throw new IllegalArgumentException( "Not null" );
+    private Node min ( Node node ) {
+        if ( node.left == null ) {
+            return node;
+        }
+        else {
+            return min( node.left );
+        }
+    }
+
+    /**
+     * max - найти максимальный узел
+     * @param node - узел
+     * @return Node
+     */
+    private Node max ( Node node ) {
+        if ( node.right == null ) {
+            return node;
+        }
+        else {
+            return max( node.right );
+        }
+    }
+
+    /**
+     * deleteMin - удалить минимальный узел
+     * @param node - узел
+     * @return Node
+     */
+    private Node deleteMin ( Node node ) {
+        if ( node.left == null ) {
+            return node.right;
         }
 
-        this.root = this.put( this.root, key, value );
+        node.left = this.deleteMin( node.left );
+        return node;
+    }
+
+    /**
+     * deleteMax - удалить максимальный узел
+     * @param node - узел
+     * @return Node
+     */
+    private Node deleteMax ( Node node ) {
+        if ( node.right == null ) {
+            return node.right;
+        }
+
+        node.left = this.deleteMin( node.left );
+        return node;
+    }
+
+    /**
+     * delete - удалить элемент
+     * @param node - узел
+     * @param key  - ключ
+     * @return
+     */
+    private Node delete ( Node node, Key key ) {
+        if ( node == null ) {
+            return null;
+        }
+
+        int cmp = key.compareTo( node.key );
+
+        if ( cmp < 0 ) {
+            node.left = delete( node.left, key );
+        }
+        else if ( cmp > 0 ) {
+            node.right = delete( node.right, key );
+        }
+        else {
+            if ( node.left == null ) {
+                return node.right;
+            }
+            if ( node.right == null ) {
+                return node.left;
+            }
+
+            Node tmp = node;
+
+            node = max( node.left );
+            node.left = deleteMax( tmp.left );
+            node.right = tmp.right;
+            tmp = null;
+        }
+
+        node.size = this.size( node.left ) + this.size( node.right ) + 1;
+        return node;
     }
 }
