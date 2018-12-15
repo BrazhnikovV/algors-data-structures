@@ -2,17 +2,25 @@ package lesson7;
 
 import java.util.LinkedList;
 
+/**
+ * Graph -
+ *
+ * @version 1.0.1
+ * @package lesson7
+ * @author  Vasya Brazhnikov
+ * @copyright Copyright (c) 2018, Vasya Brazhnikov
+ */
 public class Graph {
 
     /**
      * @access private
-     * int vertexCount -
+     * int vertexCount - количество вершин
      */
     private int vertexCount;
 
     /**
      * @access private
-     * int edgeCount -
+     * int edgeCount - количество ребер
      */
     private int edgeCount;
 

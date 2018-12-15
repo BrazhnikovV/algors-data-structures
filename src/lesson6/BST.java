@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  * BST - абстрактный тип данных бинартное дерево поиска
  *
  * @version 1.0.1
- * @package lesson5
+ * @package lesson6
  * @author  Vasya Brazhnikov
  * @copyright Copyright (c) 2018, Vasya Brazhnikov
  */
