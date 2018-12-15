@@ -79,7 +79,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     /**
      * isBalanced - проверить сбалансированность дерева
-     * @return int
+     * @return boolean
      */
     public boolean isBalanced () {
         return this.isBalanced( this.root );
@@ -149,7 +149,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     /**
      * isBalanced - проверить сбалансированность дерева
-     * @return int
+     * @return boolean
      */
     private boolean isBalanced ( Node node ) {
         if ( node == null ) {
